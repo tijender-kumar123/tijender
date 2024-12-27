@@ -599,6 +599,13 @@ body.offcanvas .tijender-info-nav-toggle {
   height: 600px;
   margin-bottom: 30px;
 }
+#tijender-info-main .desc{
+background-color: rgba(255, 255, 255, 0.8);
+  
+  padding: 5px;
+  border-radius: 10px;
+}
+
 
 .about-desc h3 {
   font-size: 18px;
