@@ -47,8 +47,8 @@
 
 
 	var counterWayPoint = function() {
-		if ($('#colorlib-counter').length > 0 ) {
-			$('#colorlib-counter').waypoint( function( direction ) {
+		if ($('#tijender-info-counter').length > 0 ) {
+			$('#tijender-info-counter').waypoint( function( direction ) {
 										
 				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
 					setTimeout( counter , 400);					
@@ -98,7 +98,7 @@
 
 	var burgerMenu = function() {
 
-		$('.js-colorlib-nav-toggle').on('click', function(event){
+		$('.js-tijender-info-nav-toggle').on('click', function(event){
 			event.preventDefault();
 			var $this = $(this);
 
@@ -119,13 +119,13 @@
 	var mobileMenuOutsideClick = function() {
 
 		$(document).click(function (e) {
-	    var container = $("#colorlib-aside, .js-colorlib-nav-toggle");
+	    var container = $("#tijender-info-aside, .js-tijender-info-nav-toggle");
 	    if (!container.is(e.target) && container.has(e.target).length === 0) {
 
 	    	if ( $('body').hasClass('offcanvas') ) {
 
     			$('body').removeClass('offcanvas');
-    			$('.js-colorlib-nav-toggle').removeClass('active');
+    			$('.js-tijender-info-nav-toggle').removeClass('active');
 			
 	    	}
 	    	
@@ -136,7 +136,7 @@
 			if ( $('body').hasClass('offcanvas') ) {
 
     			$('body').removeClass('offcanvas');
-    			$('.js-colorlib-nav-toggle').removeClass('active');
+    			$('.js-tijender-info-nav-toggle').removeClass('active');
 			
 	    	}
 		});
@@ -158,7 +158,7 @@
 		    if ( navbar.is(':visible')) {
 		    	navbar.removeClass('in');
 		    	navbar.attr('aria-expanded', 'false');
-		    	$('.js-colorlib-nav-toggle').removeClass('active');
+		    	$('.js-tijender-info-nav-toggle').removeClass('active');
 		    }
 
 		    event.preventDefault();
@@ -209,7 +209,7 @@
 
 	var sliderMain = function() {
 		
-	  	$('#colorlib-hero .flexslider').flexslider({
+	  	$('#tijender-info-hero .flexslider').flexslider({
 			animation: "fade",
 			slideshowSpeed: 5000,
 			directionNav: true,
@@ -264,9 +264,35 @@
 
 		$('.sticky-parent').css('height', h);
 
-		$("#sticky_item").stick_in_parent();
+		// $("#sticky_item").stick_in_parent();
 
 	};
+	var emailfuncttion = function name(params) {
+		
+	
+		
+		$("#contactForm").on("submit", function (event) {
+			event.preventDefault(); // Prevent the form from submitting normally
+
+			const templateParams = {
+				name: $("#name").val(),
+				email: $("#email").val(),
+				subject: $("#subject").val(),
+				message: $("#message").val(),
+			};
+
+			emailjs
+				.send("service_3logor9", "template_oocj2ap", templateParams)
+				.then(function (response) {
+					alert("Email sent successfully!");
+					console.log("Success:", response.status, response.text);
+				})
+				.catch(function (error) {
+					alert("Failed to send email.");
+					console.error("Error:", error);
+				});
+		});
+	}
 
 	var owlCrouselFeatureSlide = function() {
 		$('.owl-carousel').owlCarousel({
@@ -304,7 +330,11 @@
 		sliderMain();
 		stickyFunction();
 		owlCrouselFeatureSlide();
+		
+		emailjs.init("E1hfyhB3jI5Iw3I_e");
+		emailfuncttion();
+		// Attach the sendEmail function to the form submission event
+		
 	});
-
 
 }());
